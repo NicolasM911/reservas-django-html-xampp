@@ -1,0 +1,18 @@
+/* styles.css */
+.habitaciones-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.habitacion-item {
+    flex: 0 0 calc(33.33% - 20px); /* Tres elementos por fila */
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.habitacion-item img {
+    max-width: 100%;
+    height: auto;
+}

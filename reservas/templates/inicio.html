@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'reservas/styles.css' %}">
+
+<h2>Habitaciones</h2>
+<div class="habitaciones-container">
+    {% for habitacion in habitaciones %}
+    <div class="habitacion-item">
+        <img src="{{ habitacion.foto.url }}" alt="{{ habitacion.tipo_habitacion }}">
+        <p>{{ habitacion.tipo_habitacion }} - ${{ habitacion.precio_por_noche }}</p>
+        <p>{{ habitacion.descripcion }}</p>
+        <a href="{% url 'reservar' habitacion.id %}">Reservar</a>
+
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

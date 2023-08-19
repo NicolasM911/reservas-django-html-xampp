@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Realizar Reserva{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'reservas/styles.css' %}">
+
+<h2>Realizar Reserva</h2>
+<div class="reserva-form">
+    <div class="habitacion-info">
+        <img src="{{ habitacion.foto.url }}" alt="{{ habitacion.tipo_habitacion }}" width="200">
+        <p>{{ habitacion.descripcion }}</p>
+        <p>Precio por noche: ${{ habitacion.precio_por_noche }}</p>
+        <p>Capacidad: {{ habitacion.capacidad }} personas</p>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="habitacion_id" value="{{ habitacion.id }}">
+        <input type="submit" value="Reservar" onclick="return confirmarReserva();">
+    </form>
+</div>
+
+<script>
+    function confirmarReserva() {
+        var confirmacion = window.confirm('¿Estás seguro de que deseas realizar la reserva?');
+        if (confirmacion) {
+            mostrarReservacionExitosa();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function mostrarReservacionExitosa() {
+        window.alert('¡Reservación exitosa! Gracias por elegir nuestro hotel.');
+    }
+</script>
+{% endblock %}
